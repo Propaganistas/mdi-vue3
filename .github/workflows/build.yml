@@ -6,7 +6,7 @@ on:
     - cron: "0 0 * * *"
 
 jobs:
-  update:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -19,7 +19,9 @@ jobs:
       run: npm i
 
     - name: Build everything
-      run: npm run build
+      run: |
+        npm run build
+        npm run version
 
     - name: Push update
       uses: stefanzweifel/git-auto-commit-action@v4
