@@ -65,11 +65,7 @@ async function getIcons() {
 }
 
 async function buildIcons(format) {
-  let outDir = `./icons`
-
-  if (format === 'esm') {
-    outDir += '/esm'
-  }
+  let outDir = `./dist/${format}`
 
   await fs.mkdir(outDir, { recursive: true })
 
@@ -105,11 +101,11 @@ async function promiseAllInBatches(task, items, batchSize) {
 function main() {
   console.log(`Building...`)
 
-  Promise.all([rimraf('./icons/*')])
+  Promise.all([rimraf('./dist/esm/*'), rimraf('./dist/commonjs/*')])
     .then(() =>
       Promise.all([
         buildIcons('esm'),
-        buildIcons('cjs'),
+        buildIcons('commonjs'),
       ])
     )
     .then(() => console.log(`Finished building Vue icon components.`))
