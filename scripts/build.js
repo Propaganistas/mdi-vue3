@@ -47,13 +47,6 @@ async function getIcons() {
   let libDir = './node_modules/@mdi/svg/svg'
   let files = await fs.readdir(libDir)
 
-  return promiseAllInBatches(async (file) => ({
-      svg: await fs.readFile(`${libDir}/${file}`, 'utf8'),
-      componentName: `${camelcase(file.replace(/\.svg$/, ''), {
-        pascalCase: true,
-      })}Icon`,
-    }), files, 200)
-
   return Promise.all(
     files.map(async (file) => ({
       svg: await fs.readFile(`${libDir}/${file}`, 'utf8'),
@@ -70,32 +63,22 @@ async function buildIcons(format) {
   await fs.mkdir(outDir, { recursive: true })
 
   let icons = await getIcons()
-
-  await promiseAllInBatches(async ({ componentName, svg }) => {
-      let content = await transform(svg, componentName, format)
+  
+  await Promise.all(
+    icons.flatMap(async ({ componentName, svg }) => {
+      let content = await transform[package](svg, componentName, format)
       let types = `export default import("vue").DefineComponent;`
 
       return [
         fs.writeFile(`${outDir}/${componentName}.js`, content, 'utf8'),
         ...(types ? [fs.writeFile(`${outDir}/${componentName}.d.ts`, types, 'utf8')] : []),
       ]
-    }, icons, 50
+    })
   )
 
   await fs.writeFile(`${outDir}/index.js`, exportAll(icons, format), 'utf8')
 
   await fs.writeFile(`${outDir}/index.d.ts`, exportAll(icons, 'esm', false), 'utf8')
-}
-
-async function promiseAllInBatches(task, items, batchSize) {
-    let position = 0;
-    let results = [];
-    while (position < items.length) {
-        const itemsForBatch = items.slice(position, position + batchSize);
-        results = [...results, ...await Promise.all(itemsForBatch.map(item => task(item)))];
-        position += batchSize;
-    }
-    return results;
 }
 
 function main() {
