@@ -7,8 +7,8 @@
   ],
   "module": "/dist/esm/index.js",
   "scripts": {
-    "prepublishOnly": "npm run build",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "version": "node ./scripts/version.js"
   },
   "devDependencies": {
     "@mdi/svg": "^6.5.95",
