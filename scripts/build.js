@@ -58,5 +58,5 @@ async function buildIcons() {
     await fs.writeFile(`${outDir}/index.d.ts`, exportAll(icons, false), 'utf8')
 }
 
-await rimraf('./dist/*')
-await buildIcons()
+Promise.all([ rimraf('./dist/*') ])
+    .then(async () => await buildIcons())
