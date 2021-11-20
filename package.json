@@ -3,7 +3,7 @@
   "version": "6.5.95",
   "license": "MIT",
   "files": [
-    "icons/"
+    "dist/"
   ],
   "module": "/dist/esm/index.js",
   "scripts": {
