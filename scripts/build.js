@@ -44,7 +44,7 @@ async function buildIcons() {
     
     await Promise.all(
         icons.flatMap(async ({ componentName, svg }) => {
-            let content = await transform(svg, componentName, format)
+            let content = await transform(svg, componentName)
             let types = `export default import("vue").DefineComponent;`
             
             return [
