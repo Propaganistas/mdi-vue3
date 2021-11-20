@@ -5,7 +5,7 @@
   "files": [
     "dist/"
   ],
-  "module": "/dist/esm/index.js",
+  "module": "/dist/index.js",
   "scripts": {
     "build": "node ./scripts/build.js",
     "version": "node ./scripts/version.js"
