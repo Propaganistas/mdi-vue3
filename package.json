@@ -7,7 +7,7 @@
   ],
   "module": "/dist/index.js",
   "scripts": {
-    "build": "node ./scripts/build.js",
+    "build": "node ./scripts/build.js --trace-warnings",
     "version": "node ./scripts/version.js"
   },
   "devDependencies": {
