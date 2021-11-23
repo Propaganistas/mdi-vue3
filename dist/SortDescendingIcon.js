@@ -1,12 +1,10 @@
-import { createElementVNode as _createElementVNode, openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
+import { openBlock as _openBlock, createElementBlock as _createElementBlock } from "vue"
 
 export default function render(_ctx, _cache) {
   return (_openBlock(), _createElementBlock("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    "xmlns:xlink": "http://www.w3.org/1999/xlink",
-    version: "1.1",
-    viewBox: "0 0 24 24"
-  }, [
-    _createElementVNode("path", { d: "M19 7H22L18 3L14 7H17V21H19M2 17H12V19H2M6 5V7H2V5M2 11H9V13H2V11Z" })
-  ]))
+    viewBox: "0 0 24 24",
+    fill: "currentColor",
+    "aria-hidden": "true"
+  }, "0 0 24 24"))
 }
