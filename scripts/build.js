@@ -6,9 +6,9 @@ const { compile } = require('@vue/compiler-dom')
 
 function transform(svg, componentName) {
     svg = svg.replace(/.*(<svg .*<\/svg>)$/, "$1")
-             .replace(/ id="mdi-[a-z0-9-]+"/, 'fill="currentColor"')
-             .replace(/ width="[0-9-]+"/, '')
-             .replace(/ height="[0-9-]+"/, '')
+             .replace(/id="mdi-[a-z0-9-]+"/, '')
+             .replace(/width="[0-9]+"/, '')
+             .replace(/height="[0-9]+"/, '')
 
     let { code } = compile(svg, {
         mode: 'module',
