@@ -5,10 +5,10 @@ const camelcase = require('camelcase')
 const { compile } = require('@vue/compiler-dom')
 
 function transform(svg, componentName) {
-    svg = svg.replace(/.*(<svg .*<\/svg>)$/, "$1")
-             .replace(/id="mdi-[a-z0-9-]+"/, '')
-             .replace(/width="[0-9]+"/, '')
-             .replace(/height="[0-9]+"/, '')
+    svg = svg.replace(
+        /.*<svg.+viewBox="(?<viewbox>[0-9 ]+)"[^>]*>(?<path>.*)</svg>.*/,
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"$<viewbox>\" fill=\"currentColor\" aria-hidden=\"true\">$<path></svg>"
+    )
 
     let { code } = compile(svg, {
         mode: 'module',
