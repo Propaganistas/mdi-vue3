@@ -7,7 +7,7 @@ const { compile } = require('@vue/compiler-dom')
 function transform(svg, componentName) {
     svg = svg.replace(
         /^.*<svg.+viewBox="([0-9 ]+)"[^>]*>(.*)<\/svg>.*$/g, 
-        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"$1\" fill=\"currentColor\" aria-hidden=\"true\">$1</svg>"
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"$1\" fill=\"currentColor\" aria-hidden=\"true\">$2</svg>"
     )
 
     let { code } = compile(svg, {
