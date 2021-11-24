@@ -1,19 +1,11 @@
 {
-  "name": "@mdi/vue",
-  "version": "6.5.95",
-  "license": "MIT",
-  "files": [
-    "dist/"
-  ],
-  "module": "/dist/index.js",
-  "scripts": {
-    "build": "node ./scripts/build.js --trace-warnings",
-    "version": "node ./scripts/version.js"
-  },
   "devDependencies": {
-    "@mdi/svg": "^6.5.95",
-    "@vue/compiler-dom": "^3.0.5",
-    "camelcase": "^6.2.1",
-    "rimraf": "^3.0.2"
+    "@mdi/js": "*",
+    "@supercharge/promise-pool": "^2.0.0",
+    "lodash-es": "^4.17.0"
+  },
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "prepublishOnly": "npm run build",
   }
 }

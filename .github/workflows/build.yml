@@ -1,4 +1,4 @@
-name: Build
+name: Update
 
 on:
   workflow_dispatch:
@@ -20,12 +20,16 @@ jobs:
 
     - name: Build Vue components
       run: npm run build
-        
-    - name: Match mdi version in package.json
-      run: npm run version
+
+    - name: Get package version
+      uses: culshaw/read-package-node-version-actions@v1
+      id: pkg_version
+      with: 
+        path: "./dist/package.json"
+
 
     - name: Push update
       uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "[AUTO] mdi library update"
-
+        commit_message: "[AUTO] Update to ${{ steps.pkg_version.outputs.version }}"
+        tagging_message: ${{ steps.pkg_version.outputs.version }}
