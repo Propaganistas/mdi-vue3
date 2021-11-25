@@ -1,0 +1,39 @@
+name: Publish to NPM
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build everything
+        run: npm run build
+      
+      - name: Get package version
+        uses: culshaw/read-package-node-version-actions@v1
+        id: pkg_version
+        with: 
+          path: "./dist/package.json"
+
+      - name: Publish to NPM
+        run: |
+          echo "MDI version ${{ steps.pkg_version.outputs.version }}"
+          cd dist
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
