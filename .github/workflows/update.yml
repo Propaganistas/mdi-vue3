@@ -27,12 +27,13 @@ jobs:
         run: npm install @mdi/js
         
       - name: Commit updated @mdi/js version
+        id: commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "[AUTO] Update mdi/js version"
 
       - name: Publish to NPM
-        if: steps.auto-commit-action.outputs.changes_detected == 'true'
+        if: steps.commit.outputs.changes_detected == 'true'
         run: |
           npm run build
           cd dist
