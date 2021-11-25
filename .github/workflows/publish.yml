@@ -32,7 +32,6 @@ jobs:
 
       - name: Publish to NPM
         run: |
-          echo "MDI version ${{ steps.package-version.outputs.current-version}}"
           cd dist
           npm publish
         env:
