@@ -12,6 +12,11 @@
     "type": "git",
     "url": "https://github.com/Propaganistas/mdi-vue-icons.git"
   },
+  "main": "./icons/index.js",
+  "exports": {
+    ".": "./icons/index.js",
+    "./*": "./icons/*.js"
+  },
   "peerDependencies": {
     "vue": ">= 3"
   }
