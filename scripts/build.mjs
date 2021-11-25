@@ -27,7 +27,7 @@ const icons = Object.keys(mdi).map(name => {
 //
 
 const indexTemplate = template(
-  `<% icons.forEach((icon) => { %>export { default as <%- icon.name %> } from './<%- icon.name %>';
+  `<% icons.forEach((icon) => { %>export { default as <%- icon.name %> } from './icons/<%- icon.name %>';
 <% } ) %>`
 )
 
@@ -45,11 +45,11 @@ if (existsSync(outputDir)) {
 
 mkdirSync(outputDir)
 
-writeFile(join(outputDir, `index.js`), indexTemplate({ icons }), () => {
+writeFile(join(distDir, `index.js`), indexTemplate({ icons }), () => {
     console.log('Generated index.js')
 })
 
-writeFile(join(outputDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
+writeFile(join(distDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
   console.log('Generated index.d.ts')
 })
 
@@ -64,7 +64,7 @@ export default convertToSvgComponent(<%= JSON.stringify(icon.name) %>, <%= JSON.
 )
 
 const iconTypeTemplate = template(
-  `import { Component } from './index'
+  `import { Component } from './../index'
 declare const i: Component
 export default i
 `
