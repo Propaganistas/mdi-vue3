@@ -18,7 +18,6 @@
     "./*": "./icons/*.js"
   },
   "peerDependencies": {
-    "@mdi/js": "6.5.95",
     "vue": ">= 3"
   }
 }
