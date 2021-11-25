@@ -14,13 +14,13 @@ jobs:
         fetch-depth: '0'
         
     - name: Install dependencies
-      run: npm i
+      run: npm install
+      
+    - name: Try @mdi/js update
+      run: npm install @mdi/js
+    
+    - name: Test
+      run: cat package.json
 
     - name: Build Vue components
       run: npm run build
-
-    - name: Get package version
-      uses: martinbeentjes/npm-get-version-action@master
-      id: version
-      with:
-        path: dist
