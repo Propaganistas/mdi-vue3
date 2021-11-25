@@ -20,6 +20,7 @@ jobs:
       run: npm run build
 
     - name: Get package version
-      run: |
-        cd dist
-        npm pkg get version
+      uses: martinbeentjes/npm-get-version-action@master
+      id: version
+      with:
+        path: dist
