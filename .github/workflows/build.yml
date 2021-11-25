@@ -20,7 +20,6 @@ jobs:
       run: npm run build
 
     - name: Get package version
-      uses: culshaw/read-package-node-version-actions@v1
-      id: pkg_version
-      with: 
-        path: "./dist/package.json"
+      run: |
+        cd dist
+        npm pkg get version
