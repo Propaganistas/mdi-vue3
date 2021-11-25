@@ -5,6 +5,7 @@
     "lodash-es": "^4.17.0"
   },
   "scripts": {
-    "build": "node ./scripts/build.mjs"
+    "build": "node ./scripts/build.mjs",
+    "version": "node ./scripts/version.mjs"
   }
 }

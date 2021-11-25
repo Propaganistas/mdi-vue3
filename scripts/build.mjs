@@ -17,10 +17,11 @@ delete mdi.__esModule
 
 const icons = Object.keys(mdi).map(name => {
     return {
-        path: mdi[name], 
+        mdi: name,
         name: name.replace(/^(mdi)/, '') + 'Icon'
     }
 })
+
 
 //
 // Generate index.js
@@ -59,7 +60,8 @@ writeFile(join(distDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
 
 const iconTemplate = template(
   `import convertToSvgComponent from './../utils/convertToSvgComponent'
-export default convertToSvgComponent(<%= JSON.stringify(icon.name) %>, <%= JSON.stringify(icon.path) %>)
+import { <%= icon.mdi %> } from '@mdi/js'
+export default convertToSvgComponent(<%= JSON.stringify(icon.name) %>, <%= icon.mdi %>)
 `
 )
 
