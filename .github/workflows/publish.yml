@@ -2,6 +2,8 @@ name: Publish to NPM
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
 
 jobs:
   publish:
@@ -18,20 +20,21 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
 
-      - name: Install dependencies
-        run: npm i
-
-      - name: Build everything
-        run: npm run build
-      
-      - name: Get package version
-        uses: martinbeentjes/npm-get-version-action@master
-        id: version
+      - name: Install current dependencies
+        run: npm install
+        
+      - name: Check for @mdi/js update
+        run: npm install @mdi/js
+        
+      - name: Commit updated @mdi/js version
+        uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          path: dist
+          commit_message: "[AUTO] Update mdi/js version"
 
       - name: Publish to NPM
+        if: steps.auto-commit-action.outputs.changes_detected == 'true'
         run: |
+          npm run build
           cd dist
           npm publish
         env:
