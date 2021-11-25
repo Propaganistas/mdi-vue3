@@ -58,7 +58,7 @@ writeFile(join(outputDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
 //
 
 const iconTemplate = template(
-  `import convertToSvgComponent from './utils/convertToSvgComponent'
+  `import convertToSvgComponent from './../utils/convertToSvgComponent'
 export default convertToSvgComponent(<%= JSON.stringify(icon.name) %>, <%= JSON.stringify(icon.path) %>)
 `
 )
