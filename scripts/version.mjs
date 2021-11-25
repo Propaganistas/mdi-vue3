@@ -16,7 +16,6 @@ const mdi_version = JSON.parse(
 let pkg = JSON.parse(readFileSync(distDir + '/package.json'))
 
 pkg.version = mdi_version
-pkg.peerDependencies['@mdi/js'] = mdi_version
 
 writeFile(distDir + '/package.json', JSON.stringify(pkg, null, 2), () => { 
     console.log(`Set package version to ${mdi_version}`) 
