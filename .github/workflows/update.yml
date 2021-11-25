@@ -24,7 +24,9 @@ jobs:
         run: npm install
         
       - name: Check for @mdi/js update
-        run: npm install @mdi/js
+        run: |
+          npm install @mdi/js
+          npm run version
         
       - name: Commit updated @mdi/js version
         id: commit
