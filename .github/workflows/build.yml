@@ -15,9 +15,6 @@ jobs:
         
     - name: Install dependencies
       run: npm install
-      
-    - name: Try @mdi/js update
-      run: npm install @mdi/js
 
-    - name: Build Vue components
+    - name: Build everything
       run: npm run build

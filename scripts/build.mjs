@@ -10,6 +10,7 @@ import mdi from '@mdi/js'
 //
 
 const rootDir = fileURLToPath(new URL('../', import.meta.url))
+const templatesDir = join(rootDir, 'templates')
 const distDir = join(rootDir, 'dist')
 const outputDir = join(distDir, 'icons')
 
@@ -17,7 +18,7 @@ delete mdi.__esModule
 
 const icons = Object.keys(mdi).map(name => {
     return {
-        mdi: name,
+        path: mdi[name],
         name: name.replace(/^(mdi)/, '') + 'Icon'
     }
 })
@@ -27,24 +28,8 @@ const icons = Object.keys(mdi).map(name => {
 // Generate index.js
 //
 
-const indexTemplate = template(
-  `<% icons.forEach((icon) => { %>export { default as <%- icon.name %> } from './icons/<%- icon.name %>';
-<% } ) %>`
-)
-
-const indexTypesTemplate = template(
-  `interface Component {
-  name: string
-  render: Function
-}
-<% icons.forEach((icon) => { %>export const <%- icon.name %>: Component\n<% } ) %>`
-)
-
-if (existsSync(outputDir)) {
-    rmSync(outputDir, { recursive: true })
-}
-
-mkdirSync(outputDir)
+const indexTemplate = template(readFileSync(join(templatesDir, 'index.js')))
+const indexTypesTemplate = template(readFileSync(join(templatesDir, 'index.d.ts')))
 
 writeFile(join(distDir, `index.js`), indexTemplate({ icons }), () => {
     console.log('Generated index.js')
@@ -58,19 +43,14 @@ writeFile(join(distDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
 // Generate the individual icon files
 //
 
-const iconTemplate = template(
-  `import convertToSvgComponent from './../utils/convertToSvgComponent'
-import { <%= icon.mdi %> } from '@mdi/js'
-export default convertToSvgComponent(<%= JSON.stringify(icon.name) %>, <%= icon.mdi %>)
-`
-)
+const iconTemplate = template(readFileSync(join(templatesDir, 'icon.js')))
+const iconTypeTemplate = template(readFileSync(join(templatesDir, 'icon.d.ts')))
 
-const iconTypeTemplate = template(
-  `import { Component } from './../index'
-declare const i: Component
-export default i
-`
-)
+if (existsSync(outputDir)) {
+    rmSync(outputDir, { recursive: true })
+}
+
+mkdirSync(outputDir)
 
 await PromisePool
     .withConcurrency(20)

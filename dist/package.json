@@ -1,16 +1,16 @@
 {
-  "name": "mdi-vue-icons",
+  "name": "mdi-vue3",
   "license": "MIT",
   "version": "6.5.95",
-  "description": "mdi icons exported as self-contained Vue components",
+  "description": "Mirror of @mdi/js exported as self-contained Vue components",
   "keywords": [
     "mdi",
     "vue"
   ],
-  "homepage": "https://github.com/Propaganistas/mdi-vue-icons",
+  "homepage": "https://github.com/Propaganistas/mdi-vue3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Propaganistas/mdi-vue-icons.git"
+    "url": "https://github.com/Propaganistas/mdi-vue3.git"
   },
   "main": "./index.js",
   "exports": {
