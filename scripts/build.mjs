@@ -87,20 +87,3 @@ await PromisePool
         console.log(`Generated ${icon.name}.js`)
         console.log(`Generated ${icon.name}.d.ts`)
     })
-
-//
-// Update version in package.json
-//
-
-const mdi_version = JSON.parse(
-    readFileSync(rootDir + '/node_modules/@mdi/js/package.json')
-).version
-
-const definition = JSON.stringify({
-    ...JSON.parse(readFileSync(distDir + '/package.json')),
-    version: mdi_version
-}, null, 2)
-
-writeFile(distDir + '/package.json', definition, () => { 
-    console.log(`Set package version to ${mdi_version}`) 
-})
