@@ -18,9 +18,6 @@ jobs:
       
     - name: Try @mdi/js update
       run: npm install @mdi/js
-    
-    - name: Test
-      run: cat package.json
 
     - name: Build Vue components
       run: npm run build
