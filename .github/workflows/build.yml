@@ -1,9 +1,7 @@
-name: Update
+name: Build
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -26,10 +24,3 @@ jobs:
       id: pkg_version
       with: 
         path: "./dist/package.json"
-
-
-    - name: Push update
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: "[AUTO] Update to ${{ steps.pkg_version.outputs.version }}"
-        tagging_message: ${{ steps.pkg_version.outputs.version }}
