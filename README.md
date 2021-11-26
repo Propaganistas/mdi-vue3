@@ -5,7 +5,7 @@ A nightly GitHub workflow has been set up to automatically publish new releases 
 
 ## Usage
 
-Please refer to the [package's README](https://github.com/Propaganistas/mdi-vue3/blob/master/dist).
+Please refer to the [package's README](https://github.com/Propaganistas/mdi-vue3/tree/master/dist).
 
 ## Manual icon build
 ```
