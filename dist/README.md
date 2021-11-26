@@ -31,7 +31,7 @@ Icon names are transformed into the following format: ~~mdi~~Name**Icon**
 | mdiCheck | CheckIcon |
 | ... | ... |
 
-Knowing that, you can then import an icon as a Vue component. As long as you make use of ES6 `import` **tree-shaking is supported**.
+Knowing that, you can then import an icon as a Vue component. As long as you make use of ES6 imports **tree-shaking is supported**.
 Please note that both named imports and direct imports can be used:
 
 ```html
