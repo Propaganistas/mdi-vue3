@@ -11,7 +11,7 @@ Package versions equal the version of the contained `@mdi/js` icon set. The pack
 
 ## Usage
 
-Icon names are transformed into the following format: ~~mdi~~**Name**Icon
+Icon names are transformed into the following format: ~~mdi~~Name**Icon**
 
 | `@mdi/js` | `mdi-vue3` |
 |---|---|
