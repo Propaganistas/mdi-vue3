@@ -11,8 +11,7 @@ import mdi from '@mdi/js'
 
 const rootDir = fileURLToPath(new URL('../', import.meta.url))
 const templatesDir = join(rootDir, 'templates')
-const distDir = join(rootDir, 'dist')
-const outputDir = join(distDir, 'icons')
+const iconsDir = join(rootDir, 'icons')
 
 delete mdi.__esModule
 
@@ -23,11 +22,11 @@ const icons = Object.keys(mdi).map(name => {
     }
 })
 
-if (existsSync(outputDir)) {
-    rmSync(outputDir, { recursive: true })
+if (existsSync(iconsDir)) {
+    rmSync(iconsDir, { recursive: true })
 }
 
-mkdirSync(outputDir)
+mkdirSync(iconsDir)
 
 //
 // Generate index.js
@@ -36,11 +35,11 @@ mkdirSync(outputDir)
 const indexTemplate = template(readFileSync(join(templatesDir, 'index.js')))
 const indexTypesTemplate = template(readFileSync(join(templatesDir, 'index.d.ts')))
 
-writeFile(join(distDir, `index.js`), indexTemplate({ icons }), () => {
+writeFile(join(rootDir, `index.js`), indexTemplate({ icons }), () => {
     console.log('Generated index.js')
 })
 
-writeFile(join(distDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
+writeFile(join(rootDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
   console.log('Generated index.d.ts')
 })
 
@@ -56,12 +55,12 @@ await PromisePool
     .for(icons)
     .process(async (icon) => {
         await promises.writeFile(
-            join(outputDir, `${icon.name}.js`),
+            join(iconsDir, `${icon.name}.js`),
             iconTemplate({ icon })
         )
 
         await promises.writeFile(
-            join(outputDir, `${icon.name}.d.ts`),
+            join(iconsDir, `${icon.name}.d.ts`),
             iconTypeTemplate({ icon })
         )
 

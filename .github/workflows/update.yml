@@ -38,7 +38,6 @@ jobs:
         if: steps.commit.outputs.changes_detected == 'true'
         run: |
           npm run build
-          cd dist
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

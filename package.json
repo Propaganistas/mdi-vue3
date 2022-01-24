@@ -1,4 +1,28 @@
 {
+  "name": "mdi-vue3",
+  "license": "MIT",
+  "version": "6.5.95",
+  "description": "Mirror of @mdi/js exported as self-contained Vue components",
+  "keywords": [
+    "mdi",
+    "vue"
+  ],
+  "homepage": "https://github.com/Propaganistas/mdi-vue3",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Propaganistas/mdi-vue3.git"
+  },
+  "files": [
+    "icons/*",
+    "index.d.ts"
+  ],
+  "main": "index.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "sideEffects": false,
+  "peerDependencies": {
+    "vue": ">= 3"
+  },
   "devDependencies": {
     "@mdi/js": "^6.5.95",
     "@supercharge/promise-pool": "^2.0.0",
