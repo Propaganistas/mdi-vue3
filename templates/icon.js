@@ -1,6 +1,6 @@
-import { h } from 'vue'
+import { h, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
     name: <%= JSON.stringify(icon.name) %>,
 
     render() {
@@ -15,4 +15,4 @@ export default {
             })
         ])
     },
-}
+})

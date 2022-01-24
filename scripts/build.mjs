@@ -23,6 +23,11 @@ const icons = Object.keys(mdi).map(name => {
     }
 })
 
+if (existsSync(outputDir)) {
+    rmSync(outputDir, { recursive: true })
+}
+
+mkdirSync(outputDir)
 
 //
 // Generate index.js
@@ -45,12 +50,6 @@ writeFile(join(distDir, `index.d.ts`), indexTypesTemplate({ icons }), () => {
 
 const iconTemplate = template(readFileSync(join(templatesDir, 'icon.js')))
 const iconTypeTemplate = template(readFileSync(join(templatesDir, 'icon.d.ts')))
-
-if (existsSync(outputDir)) {
-    rmSync(outputDir, { recursive: true })
-}
-
-mkdirSync(outputDir)
 
 await PromisePool
     .withConcurrency(20)

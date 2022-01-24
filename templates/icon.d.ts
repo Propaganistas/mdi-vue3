@@ -1,5 +1,5 @@
-import { Component } from './../index'
+import { DefineComponent } from "vue"
 
-declare const <%= icon.name %>: Component
+declare const <%= icon.name %>: DefineComponent
 
 export default <%= icon.name %>

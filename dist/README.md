@@ -32,20 +32,17 @@ Icon names are transformed into the following format: ~~mdi~~Name**Icon**
 | ... | ... |
 
 Knowing that, you can then import an icon as a Vue component. As long as you make use of ES6 imports **tree-shaking is supported**.
-Please note that both named imports and direct imports can be used:
 
 ```html
 <template>
   <AbacusIcon />
-  <CheckIcon />
 </template>
 
 <script>
-  import { AbacusIcon } from 'mdi-vue3'      // Named import
-  import CheckIcon from 'mdi-vue3/CheckIcon' // Direct import
+  import { AbacusIcon } from "mdi-vue3"
   
   export default {
-    components: { AbacusIcon, CheckIcon },
+    components: { AbacusIcon },
   }
 </script>
 ```

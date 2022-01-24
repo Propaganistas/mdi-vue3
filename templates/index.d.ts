@@ -1,7 +1,2 @@
-interface Component {
-  name: string
-  render: Function
-}
-
-<% icons.forEach((icon) => { %>export const <%- icon.name %>: Component
-<% } ) %>
+<% icons.forEach((icon) => { %>export { default as <%- icon.name %> } from './icons/<%- icon.name %>'
+<% }) %>

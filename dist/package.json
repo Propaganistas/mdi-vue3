@@ -12,11 +12,10 @@
     "type": "git",
     "url": "https://github.com/Propaganistas/mdi-vue3.git"
   },
-  "main": "./index.js",
-  "exports": {
-    ".": "./index.js",
-    "./*": "./icons/*.js"
-  },
+  "main": "index.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "sideEffects": false,
   "peerDependencies": {
     "vue": ">= 3"
   }
