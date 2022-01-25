@@ -1,5 +1,4 @@
 import { readFileSync, writeFile } from 'fs'
-import { join } from 'path'
 import { fileURLToPath } from 'url'
 
 const rootDir = fileURLToPath(new URL('../', import.meta.url))
