@@ -8,14 +8,11 @@ const rootDir = fileURLToPath(new URL('../', import.meta.url))
 // Update version in package.json
 //
 
-const mdi_version = JSON.parse(
-    readFileSync(rootDir + '/node_modules/@mdi/js/package.json')
-).version
-
+const mdi = JSON.parse(readFileSync(rootDir + '/node_modules/@mdi/js/package.json'))
 let pkg = JSON.parse(readFileSync(rootDir + '/package.json'))
 
-pkg.version = mdi_version
+pkg.version = mdi.version
 
 writeFile(rootDir + '/package.json', JSON.stringify(pkg, null, 2), () => { 
-    console.log(`Set package version to ${mdi_version}`) 
+    console.log(`Set package version to ${mdi.version}`) 
 })
