@@ -13,14 +13,14 @@ const rootDir = fileURLToPath(new URL('../', import.meta.url))
 const templatesDir = join(rootDir, 'templates')
 const iconsDir = join(rootDir, 'icons')
 
-delete mdi.__esModule
-
-const icons = Object.keys(mdi).map(name => {
-    return {
-        path: mdi[name],
-        name: name.replace(/^(mdi)/, '') + 'Icon'
-    }
-})
+const icons = Object.keys(mdi)
+    .filter(name => name.startsWith('mdi'))
+    .map(name => {
+        return {
+            path: mdi[name],
+            name: name.replace(/^(mdi)/, '') + 'Icon'
+        }
+    })
 
 if (existsSync(iconsDir)) {
     rmSync(iconsDir, { recursive: true })
