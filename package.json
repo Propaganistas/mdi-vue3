@@ -1,7 +1,7 @@
 {
   "name": "mdi-vue3",
   "license": "MIT",
-  "version": "6.5.95",
+  "version": "6.6.95",
   "description": "Mirror of @mdi/js exported as self-contained Vue components",
   "keywords": [
     "mdi",
@@ -24,7 +24,7 @@
     "vue": ">= 3"
   },
   "devDependencies": {
-    "@mdi/js": "^6.5.95",
+    "@mdi/js": "^6.6.95",
     "@supercharge/promise-pool": "^2.0.0",
     "lodash-es": "^4.17.0"
   },
