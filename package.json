@@ -1,6 +1,6 @@
 {
   "name": "mdi-vue3",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "version": "7.4.47",
   "description": "Mirror of @mdi/js exported as self-contained Vue components",
   "keywords": [
